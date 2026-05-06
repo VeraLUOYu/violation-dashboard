@@ -173,7 +173,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft
   <div class="login-box">
     <div class="login-logo">👗</div>
     <div class="login-title">违规风向看板</div>
-    <div class="login-sub">小红书电商 · 亲子生活类目</div>
+    <div class="login-sub">小红书电商 · 孕产母婴/食品类目</div>
     <div class="login-label">选择你的 AM 名字</div>
     <div id="am-grid"><span class="loading-tip">加载中…</span></div>
     <button class="login-btn" id="login-btn" disabled>查看我的看板 →</button>
@@ -339,12 +339,12 @@ async function loadData() {
     const resp = await fetch(GITHUB_DATA_URL + '?nocache=' + Date.now(), {cache: 'no-store'});
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     DATA = await resp.json();
-    if (DATA.ams && DATA.ams['全部'] && !DATA.ams['安芷']) {
-      DATA.ams['安芷'] = {...DATA.ams['全部'], displayName: '安芷'};
+    if (DATA.ams && DATA.ams['全部'] && !DATA.ams['月将']) {
+      DATA.ams['月将'] = {...DATA.ams['全部'], displayName: '安芷'};
       delete DATA.ams['全部'];
     }
     status.textContent = '数据已更新：' + (DATA.updatedAt || '').slice(0, 10);
-    loadAM('安芷');
+    loadAM('月将');
   } catch(e) {
     status.textContent = '⚠️ 数据加载失败：' + e.message;
     console.error(e);
@@ -354,7 +354,7 @@ async function loadData() {
 function renderLoginPage() {
   const grid = document.getElementById('am-grid');
   grid.innerHTML = '';
-  const knownAMs = ['安芷', '夏日', '精卫', '蘑朵'];
+  const knownAMs = ['月将'];
   knownAMs.forEach(name => {
     const btn = document.createElement('button');
     btn.className = 'am-btn';
